@@ -22,5 +22,25 @@ public class Product {
 	{
 		return Name;
 	}
+
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
+	}
+
+	public int getPrice() {
+		return Price;
+	}
+
+	public void setPrice(int price) {
+		Price = price;
+	}
+
+	public void setName(String name) {
+		Name = name;
+	}
 	
 }

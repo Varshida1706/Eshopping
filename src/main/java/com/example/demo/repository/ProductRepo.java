@@ -26,16 +26,38 @@ public class ProductRepo {
 	
 	public Product getProduct(String Name)
 	{
-		for(int i=1;i<m.size();i++)
-		{
-			System.out.println(m.get(i));
-			if(m.get(i).getName() == Name);
-				return m.get(i);
-		}	
+		
+		System.out.println("repo name rcvd : "+Name);
+		/*
+		 * for(int i=1;i<m.size();i++) { System.out.println(m.get(i));
+		 * if(m.get(i).getName() == Name); return m.get(i); }
+		 */
+		for (Product product : m.values()) {
+			 System.out.println("Product in map: " + product);
+			if(product.getName().equals(Name)) {
+				return product;
+			}
+		}
 		
 		return null;
 	}
 	
+	public Product addProduct(int id, String name, int price) {
+	    System.out.println("inside repo to add/update product");
+	    Product existingProduct = m.get(id);
+	    if (existingProduct != null) {
+	        // Update existing product
+	        existingProduct.setName(name);
+	        existingProduct.setPrice(price);
+	    } else {
+	        // Add new product
+	        existingProduct = new Product(id, name, price);
+	        m.put(id, existingProduct);
+	    }
+	    return existingProduct; // Return the product (updated or newly added)
+	}
+
+
 	
 
 }
