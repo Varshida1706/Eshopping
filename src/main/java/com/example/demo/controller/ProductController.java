@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.xpath.XPathVariableResolver;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -97,6 +99,21 @@ public class ProductController {
 		 else {
 			 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		 }
+	}
+	
+	@GetMapping("/showProd")
+	public ResponseEntity<List<Product>> showProducts(){
+		
+		List<Product> pd=ip.showProd();
+		return new ResponseEntity<List<Product>>(pd,HttpStatus.OK);
+	}
+	
+	
+	@GetMapping("/showMyProd")
+	public ResponseEntity <Product> showProduct(@RequestBody Product product){
+		
+		Product pd=ip.showProduct((product.getID()));
+		return new ResponseEntity<Product>(pd,HttpStatus.OK);
 	}
 
 }

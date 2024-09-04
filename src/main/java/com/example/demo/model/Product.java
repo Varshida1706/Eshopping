@@ -3,7 +3,9 @@ package com.example.demo.model;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document (collection = "Product")
+
 public class Product {
+
 	private int ID;
 	private String Name;
 	private int Price;

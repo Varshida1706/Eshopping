@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -89,6 +90,21 @@ public class ProductService implements IProductService{
 		// TODO Auto-generated method stub
 		return pd;
 	}
+
+	@Override
+	public List<Product> showProd() {
+		// TODO Auto-generated method stub
+		
+		List<Product> pd= pdRepo.showProd();
+		return pd;
+	}
 	
+	@Override
+	public Product showProduct(int ID) {
+		// TODO Auto-generated method stub
+		
+		Product pd= pdRepo.showProduct(ID);
+		return pd;
+	}
 
 }

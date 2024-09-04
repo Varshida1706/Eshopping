@@ -1,7 +1,9 @@
 package com.example.demo.repository;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -68,10 +70,9 @@ public class ProductRepo{
 	}
 	
 	public Product addProductInMongo(int id, String name, int price) {
-	    String stringId = String.valueOf(id);
 	    
 	    // Check if the product already exists in the database
-	    Product product = iproduct.findById(stringId).orElse(null);
+	    Product product = iproduct.findById(id).orElse(null);
 	    
 	    if (product == null) {
 	        // If the product does not exist, create a new one
@@ -88,5 +89,18 @@ public class ProductRepo{
 	    System.out.println("Product saved successfully: " + product);
 	    
 	    return product;
+	}
+	
+	public List<Product> showProd() {
+		List<Product> product= iproduct.findAll();
+		
+		return product;
+	}
+	public Product showProduct(int ID) {
+		System.out.println("ID >>" +ID);
+		Optional<Product> product= iproduct.findById(ID);
+		//Product product= iproduct.findById(ID).orElse(null);
+		System.out.println(product);
+		return product.orElse(null);
 	}
 }
