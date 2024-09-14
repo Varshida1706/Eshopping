@@ -21,6 +21,7 @@ public class ProductRepo{
 		this.iproduct=iproduct;
 	}
 	
+	
 	final Map<Integer,Product> m=new HashMap();
 	
 	public ProductRepo() {
@@ -73,6 +74,7 @@ public class ProductRepo{
 	    
 	    // Check if the product already exists in the database
 	    Product product = iproduct.findById(id).orElse(null);
+	   
 	    
 	    if (product == null) {
 	        // If the product does not exist, create a new one
@@ -98,7 +100,7 @@ public class ProductRepo{
 	}
 	public Product showProduct(int ID) {
 		System.out.println("ID >>" +ID);
-		Optional<Product> product= iproduct.findById(ID);
+		Optional<Product> product= iproduct.findByID(ID);
 		//Product product= iproduct.findById(ID).orElse(null);
 		System.out.println(product);
 		return product.orElse(null);
