@@ -6,4 +6,5 @@ public interface IUserService {
 
 	
 	public User addUser(User userdata);
+	public boolean validateUser(User user);
 }

@@ -22,4 +22,15 @@ public class UserService implements IUserService{
 		return user;
 	}
 
+	@Override
+	public boolean validateUser(User user) {
+		// TODO Auto-generated method stub
+		User userFromDB=ur.findUser(user);
+		System.out.println("User from DB"+userFromDB);
+		System.out.println("User from UI" + user);
+		
+		return (userFromDB.getPassword().equals(user.getPassword()));
+		
+	}
+
 }

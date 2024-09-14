@@ -24,4 +24,9 @@ public User addUser(User userdata) {
 	    return u;
 	}
 
+public User findUser(User user){
+	
+	return iuserrepo.findByusername(user.getUsername());
+	}
+
 }

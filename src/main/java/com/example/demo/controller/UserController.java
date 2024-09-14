@@ -18,8 +18,9 @@ import com.example.demo.model.User;
 
 @RequestMapping("/api/auth")
 @RestController
-@CrossOrigin(origins = "http://localhost:3000") 
+@CrossOrigin(origins = "http://localhost:8080") 
 public class UserController {
+	
 	
 	
 	@Autowired
@@ -28,7 +29,7 @@ public class UserController {
 	@PostMapping("/signup")
 	public ResponseEntity<Map<String, Object>> addUser(@RequestBody User user) {
 	    System.out.println("User data received in API: " + user);
-	    
+	    System.out.println("test");
 	    User savedUser = iuser.addUser(user);
 	    
 	    // Prepare a response with user data and a success message
@@ -40,5 +41,31 @@ public class UserController {
 	    return new ResponseEntity<>(response, HttpStatus.OK);
 	} 
 	
+	@PostMapping("/login")
+	public ResponseEntity<Map<String,Object>> validateUser(@RequestBody User user){
+		System.out.println("User Receiver: Name =" +user.getUsername());
+		Map<String, Object> response = new HashMap<>();
+		
+		boolean isUserValidated=iuser.validateUser(user);
+		System.out.println("isUserValidated"+isUserValidated);
+		if(isUserValidated)
+		{
+			System.out.println("inside if block");
+			response.put("success", true);
+			response.put("message", "User Validated successfully");
+		    response.put("token", "123456");
+		    return new ResponseEntity<>(response, HttpStatus.OK);
+		}
+		
+		else
+		{	
+			System.out.println("inside else block");
+	    response.put("Error", false);
+	    response.put("message", "your request has been failed");
+	    return new ResponseEntity<>(response, HttpStatus.EXPECTATION_FAILED);
+		}
+	    
+		
+	}
 
 }
