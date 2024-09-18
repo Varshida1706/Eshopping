@@ -18,7 +18,8 @@ import com.example.demo.model.User;
 
 @RequestMapping("/api/auth")
 @RestController
-@CrossOrigin(origins = "http://localhost:8080") 
+@CrossOrigin(origins = {"http://localhost:8080","http://localhost:3030"}) 
+
 public class UserController {
 	
 	
@@ -54,6 +55,7 @@ public class UserController {
 			response.put("success", true);
 			response.put("message", "User Validated successfully");
 		    response.put("token", "123456");
+		    System.out.println(response);
 		    return new ResponseEntity<>(response, HttpStatus.OK);
 		}
 		
@@ -62,9 +64,11 @@ public class UserController {
 			System.out.println("inside else block");
 	    response.put("Error", false);
 	    response.put("message", "your request has been failed");
+	    System.out.println(response);
 	    return new ResponseEntity<>(response, HttpStatus.EXPECTATION_FAILED);
 		}
 	    
+		
 		
 	}
 

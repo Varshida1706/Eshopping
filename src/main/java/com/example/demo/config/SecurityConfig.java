@@ -17,7 +17,7 @@ public class SecurityConfig {
         httpSecurity
             .csrf().disable() // Disable CSRF for simplicity; consider enabling it in production
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/auth/**").permitAll() // Allow access to auth endpoints without authentication
+                .requestMatchers("/api/**").permitAll() // Allow access to auth endpoints without authentication
                 .anyRequest().authenticated() // Secure other endpoints
             )
             .httpBasic(); // Enable basic authentication
@@ -28,17 +28,22 @@ public class SecurityConfig {
         return httpSecurity.build();
     }
 
+    
+    
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
+            	System.out.println("command reached in cors configure");
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:3000") // Your React app URL
+                        .allowedOrigins("http://localhost:3000") // Add more origins if necessary
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                        .allowedHeaders("*")
-                        .allowCredentials(true);
+                        .allowedHeaders("*") // Allow all headers
+                        .exposedHeaders("Authorization") // Allow frontend to read this header
+                        .allowCredentials(true); // Handle cookies and credentials, if needed
             }
         };
     }
+
 }

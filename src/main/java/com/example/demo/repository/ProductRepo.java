@@ -95,7 +95,7 @@ public class ProductRepo{
 	
 	public List<Product> showProd() {
 		List<Product> product= iproduct.findAll();
-		
+		System.out.println(product);
 		return product;
 	}
 	public Product showProduct(int ID) {
